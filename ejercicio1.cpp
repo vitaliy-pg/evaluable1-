@@ -33,3 +33,20 @@ void imprimirArray(const arrayLength_t *arr) {
     }
     printf("\nSuma de los elementos: %d\n", arr->arrAdd);
 }
+int main() {
+    arrayLength_t miArray;
+
+    // Inicializar la estructura
+    inicializar(&miArray);
+
+    // Agregar elementos al array
+    agregarElemento(&miArray, 5);
+    agregarElemento(&miArray, 10);
+    agregarElemento(&miArray, -3);   // Este no se agregará (negativo)
+    agregarElemento(&miArray, 15);
+
+    // Imprimir el array y la suma
+    imprimirArray(&miArray);
+
+    return 0;
+}
