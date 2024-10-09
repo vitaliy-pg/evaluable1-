@@ -69,3 +69,17 @@ int getArrAdd(const arrayLength_t *arr) {
     }
     return arr->arrAdd;  // Devuelve la suma de los elementos en el array
 }
+
+int getElement(const arrayLength_t *arr, int posicion) {
+    // Verificar que la posición está dentro de los límites (0 a 9)
+    if (arr == NULL || posicion < 0 || posicion >= 10) {
+        return -1;  // Error si el puntero es nulo o la posición está fuera de los límites
+    }
+
+    // Verificar que la posición contiene un valor positivo
+    if (arr->arrInt[posicion] > 0) {
+        return arr->arrInt[posicion];  // Devuelve el valor almacenado si es positivo
+    } else {
+        return -1;  // Devuelve -1 si la posición no tiene un valor positivo
+    }
+}
