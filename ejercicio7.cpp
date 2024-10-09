@@ -62,3 +62,10 @@ int getArrSize(const arrayLength_t *arr) {
     }
     return arr->arrSize;  // Devuelve el número de elementos en el array
 }
+
+int getArrAdd(const arrayLength_t *arr) {
+    if (arr == NULL) {
+        return -1;  // Error si el puntero es nulo
+    }
+    return arr->arrAdd;  // Devuelve la suma de los elementos en el array
+}
