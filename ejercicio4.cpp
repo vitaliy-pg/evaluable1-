@@ -41,3 +41,15 @@ int addElement(arrayLength_t *arr, int valor) {
 
     return 0; // Éxito
 }
+void printArr(const arrayLength_t *arr) {
+    printf("{[");
+
+    for (int i = 0; i < 10; i++) {
+        printf("%d", arr->arrInt[i]);
+        if (i < 9) {
+            printf(", ");
+        }
+    }
+
+    printf("], %d, %d}\n", arr->arrSize, arr->arrAdd);
+}
