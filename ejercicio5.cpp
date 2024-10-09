@@ -1,4 +1,4 @@
-#include<studio.h>
+ #include<stdio.h>
 
 typedef struct {
     int arrInt[10];   // Array de enteros positivos o -1 si no hay valores
