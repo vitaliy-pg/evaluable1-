@@ -109,3 +109,13 @@ int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
         return -1; // Error, la posición no tiene un valor positivo
     }
 }
+
+void resetArr(arrayLength_t *arr) {
+    // Verificar que el puntero no es nulo
+    if (arr == NULL) {
+        return; // No se realiza ninguna acción si el puntero es nulo
+    }
+
+    // Utilizar la función initArray para resetear el array
+    initArray(arr);
+}
