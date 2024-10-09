@@ -81,3 +81,71 @@ int getElement(const arrayLength_t *arr, int posicion) {
         return -1;  // Devuelve -1 si la posición no tiene un valor positivo
     }
 }
+
+int main() {
+    arrayLength_t arr;
+
+    // Inicializar el array
+    if (initArray(&arr) != 0) {
+        printf("Error en inicialización\n");
+    } else {
+        printf("Array inicializado\n");
+    }
+
+    // Imprimir el array después de la inicialización
+    printArr(&arr);
+
+    // Añadir el valor 22
+    if (addElement(&arr, 22) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 22
+    printArr(&arr);
+
+    // Añadir el valor 44
+    if (addElement(&arr, 44) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 44
+    printArr(&arr);
+
+    // Obtener el número de elementos en el array con getArrSize
+    int size = getArrSize(&arr);
+    if (size != -1) {
+        printf("El número de elementos en el array es: %d\n", size);
+    } else {
+        printf("Error al obtener el tamaño del array\n");
+    }
+
+    // Obtener la suma de los elementos en el array con getArrAdd
+    int suma = getArrAdd(&arr);
+    if (suma != -1) {
+        printf("La suma de los elementos en el array es: %d\n", suma);
+    } else {
+        printf("Error al obtener la suma de los elementos del array\n");
+    }
+
+    // Obtener un elemento en la posición 1
+    int valor = getElement(&arr, 1);
+    if (valor != -1) {
+        printf("El valor en la posición 1 es: %d\n", valor);
+    } else {
+        printf("Error al obtener el valor en la posición 1\n");
+    }
+
+    // Obtener un elemento en una posición fuera de los límites
+    valor = getElement(&arr, 10);
+    if (valor != -1) {
+        printf("El valor en la posición 10 es: %d\n", valor);
+    } else {
+        printf("Error al obtener el valor en la posición 10\n");
+    }
+
+    return 0;
+}
