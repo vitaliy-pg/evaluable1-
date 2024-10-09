@@ -1,22 +1,71 @@
-#include<stdio.h>
+#include <stdio.h>
 
+// Estructura arrayLength_t
 typedef struct {
     int arrInt[10];   // Array de enteros positivos o -1 si no hay valores
     int arrSize;      // Número de elementos almacenados
     int arrAdd;       // Suma de los elementos del array
 } arrayLength_t;
 
+// Funciones
 
-int initArray(arrayLength_t *arr);
-int addElement(arrayLength_t *arr, int valor);
-void printArr(const arrayLength_t *arr);
-int getArrSize(const arrayLength_t *arr);
-int getArrAdd(const arrayLength_t *arr);
-int getElement(const arrayLength_t *arr, int posicion);
-int setElement(arrayLength_t *arr, int posicion, int nuevoValor);
-void resetArr(arrayLength_t *arr);
+int initArray(arrayLength_t *arr) {
+    if (!arr) return -1; // Error si el puntero es NULL
+    for (int i = 0; i < 10; i++) {
+        arr->arrInt[i] = -1; // Inicializar todas las posiciones a -1
+    }
+    arr->arrSize = 0;      // Inicializar arrSize a 0
+    arr->arrAdd = 0;       // Inicializar arrAdd a 0
+    return 0;              // Retornar 0 si no hay error
+}
 
+int addElement(arrayLength_t *arr, int valor) {
+    if (!arr || valor < 0 || arr->arrSize >= 10) return -1; // Error si el puntero es NULL o si el valor es negativo o no hay espacio
+    arr->arrInt[arr->arrSize] = valor; // Añadir valor al array
+    arr->arrSize++;                     // Incrementar arrSize
+    arr->arrAdd += valor;               // Sumar el valor a arrAdd
+    return 0;                            // Retornar 0 si no hay error
+}
 
+void printArr(const arrayLength_t *arr) {
+    if (!arr) return; // No imprimir si el puntero es NULL
+    printf("{[");
+    for (int i = 0; i < 10; i++) {
+        printf("%d", arr->arrInt[i]);
+        if (i < 9) printf(", ");
+    }
+    printf("], %d, %d}\n", arr->arrSize, arr->arrAdd);
+}
+
+int getArrSize(const arrayLength_t *arr) {
+    if (!arr) return -1; // Error si el puntero es NULL
+    return arr->arrSize; // Retornar arrSize
+}
+
+int getArrAdd(const arrayLength_t *arr) {
+    if (!arr) return -1; // Error si el puntero es NULL
+    return arr->arrAdd;  // Retornar arrAdd
+}
+
+int getElement(const arrayLength_t *arr, int posicion) {
+    if (!arr || posicion < 0 || posicion >= 10 || arr->arrInt[posicion] == -1) return -1; // Error en caso de posición inválida
+    return arr->arrInt[posicion]; // Retornar el valor en la posición especificada
+}
+
+int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
+    if (!arr || posicion < 0 || posicion >= 10 || arr->arrInt[posicion] == -1 || nuevoValor < 0) return -1; // Error en caso de posición inválida
+    arr->arrAdd -= arr->arrInt[posicion]; // Restar el valor anterior de arrAdd
+    arr->arrInt[posicion] = nuevoValor;    // Asignar nuevo valor
+    arr->arrAdd += nuevoValor;              // Sumar el nuevo valor a arrAdd
+    return 0;                               // Retornar 0 si no hay error
+}
+
+void resetArr(arrayLength_t *arr) {
+    if (!arr) return; // No hacer nada si el puntero es NULL
+    initArray(arr); // Reiniciar el array usando initArray
+}
+
+// Función principal
 int main() {
     // a) Declarar dos estructuras de tipo arrayLength_t
     arrayLength_t al1, al2;
