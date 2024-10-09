@@ -21,3 +21,24 @@ int initArray(arrayLength_t *arr) {
 
     return 0; // Éxito
 }
+
+int addElement(arrayLength_t *arr, int valor) {
+    // Verificar si el valor es positivo
+    if (valor <= 0) {
+        return -1; // Error, el valor no es positivo
+    }
+
+    // Verificar si hay espacio en el array
+    if (arr->arrSize >= 10) {
+        return -1; // Error, el array está lleno
+    }
+
+    // Añadir el nuevo valor a la primera posición libre
+    arr->arrInt[arr->arrSize] = valor;
+
+    // Actualizar arrSize y arrAdd
+    arr->arrSize++;
+    arr->arrAdd += valor;
+
+    return 0; // Éxito
+}
