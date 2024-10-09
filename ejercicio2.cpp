@@ -21,3 +21,17 @@ int initArray(arrayLength_t *arr) {
 
     return 0; // Todo salió bien
 }
+void agregarElemento(arrayLength_t *arr, int valor) {
+    if (valor <= 0) {
+        printf("El valor debe ser un entero positivo.\n");
+        return;
+    }
+
+    if (arr->arrSize < 10) {
+        arr->arrInt[arr->arrSize] = valor;
+        arr->arrSize++;
+        arr->arrAdd += valor;
+    } else {
+        printf("El array está lleno.\n");
+    }
+}
