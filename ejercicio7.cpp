@@ -108,3 +108,56 @@ int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
         return -1; // Error, la posición no tiene un valor positivo
     }
 }
+
+int main() {
+    arrayLength_t arr;
+
+    // Inicializar el array
+    if (initArray(&arr) != 0) {
+        printf("Error en inicialización\n");
+    } else {
+        printf("Array inicializado\n");
+    }
+
+    // Imprimir el array después de la inicialización
+    printArr(&arr);
+
+    // Añadir el valor 22
+    if (addElement(&arr, 22) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 22
+    printArr(&arr);
+
+    // Añadir el valor 44
+    if (addElement(&arr, 44) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 44
+    printArr(&arr);
+
+    // Modificar el valor en la posición 1 con setElement
+    if (setElement(&arr, 1, 99) == 0) {
+        printf("Elemento modificado en la posición 1\n");
+    } else {
+        printf("Error al modificar elemento en la posición 1\n");
+    }
+
+    // Imprimir el array después de modificar el valor en la posición 1
+    printArr(&arr);
+
+    // Intentar modificar una posición con valor negativo (posición vacía)
+    if (setElement(&arr, 2, 88) == 0) {
+        printf("Elemento modificado en la posición 2\n");
+    } else {
+        printf("Error al modificar elemento en la posición 2\n");
+    }
+
+    return 0;
+}
