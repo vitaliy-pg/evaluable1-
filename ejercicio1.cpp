@@ -25,3 +25,11 @@ void agregarElemento(arrayLength_t *arr, int valor) {
         printf("El array está lleno.\n");
     }
 }
+
+void imprimirArray(const arrayLength_t *arr) {
+    printf("Elementos en el array: ");
+    for (int i = 0; i < arr->arrSize; i++) {
+        printf("%d ", arr->arrInt[i]);
+    }
+    printf("\nSuma de los elementos: %d\n", arr->arrAdd);
+}
