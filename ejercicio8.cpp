@@ -84,3 +84,28 @@ int getElement(const arrayLength_t *arr, int posicion) {
         return -1;  // Devuelve -1 si la posición no tiene un valor positivo
     }
 }
+
+int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
+    // Verificar que el nuevo valor es positivo
+    if (nuevoValor <= 0) {
+        return -1; // Error, el nuevo valor no es positivo
+    }
+
+    // Verificar que la posición está dentro de los límites (0 a 9)
+    if (arr == NULL || posicion < 0 || posicion >= 10) {
+        return -1;  // Error si el puntero es nulo o la posición está fuera de los límites
+    }
+
+    // Verificar que la posición contiene un valor positivo
+    if (arr->arrInt[posicion] > 0) {
+        // Actualizar la suma de los elementos (restar el valor anterior y sumar el nuevo valor)
+        arr->arrAdd = arr->arrAdd - arr->arrInt[posicion] + nuevoValor;
+
+        // Asignar el nuevo valor a la posición
+        arr->arrInt[posicion] = nuevoValor;
+
+        return 0; // Éxito
+    } else {
+        return -1; // Error, la posición no tiene un valor positivo
+    }
+}
