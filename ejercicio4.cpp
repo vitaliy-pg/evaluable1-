@@ -60,3 +60,47 @@ int getArrSize(const arrayLength_t *arr) {
     }
     return arr->arrSize;  // Devuelve el número de elementos en el array
 }
+
+int main() {
+    arrayLength_t arr;
+
+    // Inicializar el array
+    if (initArray(&arr) != 0) {
+        printf("Error en inicialización\n");
+    } else {
+        printf("Array inicializado\n");
+    }
+
+    // Imprimir el array después de la inicialización
+    printArr(&arr);
+
+    // Añadir el valor 22
+    if (addElement(&arr, 22) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 22
+    printArr(&arr);
+
+    // Añadir el valor 44
+    if (addElement(&arr, 44) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 44
+    printArr(&arr);
+
+    // Obtener el número de elementos en el array con getArrSize
+    int size = getArrSize(&arr);
+    if (size != -1) {
+        printf("El número de elementos en el array es: %d\n", size);
+    } else {
+        printf("Error al obtener el tamaño del array\n");
+    }
+
+    return 0;
+}
