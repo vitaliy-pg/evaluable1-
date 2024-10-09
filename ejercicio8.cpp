@@ -119,3 +119,55 @@ void resetArr(arrayLength_t *arr) {
     // Utilizar la función initArray para resetear el array
     initArray(arr);
 }
+
+
+int main() {
+    arrayLength_t arr;
+
+    // Inicializar el array
+    if (initArray(&arr) != 0) {
+        printf("Error en inicialización\n");
+    } else {
+        printf("Array inicializado\n");
+    }
+
+    // Imprimir el array después de la inicialización
+    printArr(&arr);
+
+    // Añadir el valor 22
+    if (addElement(&arr, 22) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 22
+    printArr(&arr);
+
+    // Añadir el valor 44
+    if (addElement(&arr, 44) == 0) {
+        printf("Elemento añadido\n");
+    } else {
+        printf("Error al añadir elemento\n");
+    }
+
+    // Imprimir el array después de añadir 44
+    printArr(&arr);
+
+    // Modificar el valor en la posición 1 con setElement
+    if (setElement(&arr, 1, 99) == 0) {
+        printf("Elemento modificado en la posición 1\n");
+    } else {
+        printf("Error al modificar elemento en la posición 1\n");
+    }
+
+    // Imprimir el array después de modificar el valor en la posición 1
+    printArr(&arr);
+
+    // Resetear el array
+    resetArr(&arr);
+    printf("Array reseteado\n");
+    printArr(&arr); // Imprimir el array después del reset
+
+    return 0;
+}
