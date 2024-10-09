@@ -47,3 +47,27 @@ void printArr(const arrayLength_t *arr) {
 
     printf("], %d, %d}\n", arr->arrSize, arr->arrAdd);
 }
+int main() {
+    arrayLength_t miArray;
+
+    // Inicializar el array con la función initArray
+    if (initArray(&miArray) == 0) {
+        printf("Array inicializado correctamente.\n");
+    } else {
+        printf("Error al inicializar el array.\n");
+        return -1;  // Finaliza si ocurre algún error
+    }
+
+    // Imprimir el array inicializado
+    printArr(&miArray);  // Debería mostrar {[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 0, 0}
+
+    // Agregar algunos elementos al array
+    agregarElemento(&miArray, 5);
+    agregarElemento(&miArray, 10);
+    agregarElemento(&miArray, 15);
+
+    // Imprimir el array después de agregar elementos
+    printArr(&miArray);  // Debería mostrar {[5, 10, 15, -1, -1, -1, -1, -1, -1, -1], 3, 30}
+
+    return 0;
+}
