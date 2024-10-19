@@ -23,9 +23,9 @@ int initArray(arrayLength_t *arr) {
 }
 
 int addElement(arrayLength_t *arr, int valor) {
-    // Verificar si el valor es positivo
-    if (valor <= 0) {
-        return -1; // Error, el valor no es positivo
+    // Verificar si el valor es positivo o igual a 0
+    if (valor < 0) {   // Modificado para permitir el 0
+        return -1; // Error, el valor no es válido
     }
 
     // Verificar si hay espacio en el array
@@ -56,39 +56,24 @@ void printArr(const arrayLength_t *arr) {
     printf("], %d, %d}\n", arr->arrSize, arr->arrAdd);
 }
 
-int getArrSize(const arrayLength_t *arr) {
-    if (arr == NULL) {
-        return -1;  // Error si el puntero es nulo
-    }
-    return arr->arrSize;  // Devuelve el número de elementos en el array
-}
-
-int getArrAdd(const arrayLength_t *arr) {
-    if (arr == NULL) {
-        return -1;  // Error si el puntero es nulo
-    }
-    return arr->arrAdd;  // Devuelve la suma de los elementos en el array
-}
-
-
 int getElement(const arrayLength_t *arr, int posicion) {
     // Verificar que la posición está dentro de los límites (0 a 9)
     if (arr == NULL || posicion < 0 || posicion >= 10) {
         return -1;  // Error si el puntero es nulo o la posición está fuera de los límites
     }
 
-    // Verificar que la posición contiene un valor positivo
-    if (arr->arrInt[posicion] > 0) {
-        return arr->arrInt[posicion];  // Devuelve el valor almacenado si es positivo
+    // Verificar que la posición contiene un valor válido (no -1)
+    if (arr->arrInt[posicion] != -1) {
+        return arr->arrInt[posicion];  // Devuelve el valor almacenado si es válido
     } else {
-        return -1;  // Devuelve -1 si la posición no tiene un valor positivo
+        return -1;  // Devuelve -1 si la posición no tiene un valor válido
     }
 }
 
 int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
-    // Verificar que el nuevo valor es positivo
-    if (nuevoValor <= 0) {
-        return -1; // Error, el nuevo valor no es positivo
+    // Verificar que el nuevo valor es positivo o igual a 0
+    if (nuevoValor < 0) {
+        return -1; // Error, el nuevo valor no es válido
     }
 
     // Verificar que la posición está dentro de los límites (0 a 9)
@@ -96,8 +81,8 @@ int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
         return -1;  // Error si el puntero es nulo o la posición está fuera de los límites
     }
 
-    // Verificar que la posición contiene un valor positivo
-    if (arr->arrInt[posicion] > 0) {
+    // Verificar que la posición contiene un valor válido
+    if (arr->arrInt[posicion] != -1) {
         // Actualizar la suma de los elementos (restar el valor anterior y sumar el nuevo valor)
         arr->arrAdd = arr->arrAdd - arr->arrInt[posicion] + nuevoValor;
 
@@ -106,20 +91,9 @@ int setElement(arrayLength_t *arr, int posicion, int nuevoValor) {
 
         return 0; // Éxito
     } else {
-        return -1; // Error, la posición no tiene un valor positivo
+        return -1; // Error, la posición no tiene un valor válido
     }
 }
-
-void resetArr(arrayLength_t *arr) {
-    // Verificar que el puntero no es nulo
-    if (arr == NULL) {
-        return; // No se realiza ninguna acción si el puntero es nulo
-    }
-
-    // Utilizar la función initArray para resetear el array
-    initArray(arr);
-}
-
 
 int main() {
     arrayLength_t al1, al2;
