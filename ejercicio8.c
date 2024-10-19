@@ -122,52 +122,53 @@ void resetArr(arrayLength_t *arr) {
 
 
 int main() {
-    arrayLength_t arr;
+    arrayLength_t al1, al2;
 
-    // Inicializar el array
-    if (initArray(&arr) != 0) {
+    // a) Declarar dos estructuras de tipo arrayLength_t
+    if (initArray(&al1) != 0 || initArray(&al2) != 0) {
         printf("Error en inicialización\n");
-    } else {
-        printf("Array inicializado\n");
+        return -1;
     }
 
-    // Imprimir el array después de la inicialización
-    printArr(&arr);
-
-    // Añadir el valor 22
-    if (addElement(&arr, 22) == 0) {
-        printf("Elemento añadido\n");
-    } else {
-        printf("Error al añadir elemento\n");
+    // b) Hacer que al1 almacene los valores 0, 10, 20, ..., 90
+    for (int i = 0; i < 10; i++) {
+        if (addElement(&al1, i * 10) != 0) {
+            printf("Error al añadir elemento %d en al1\n", i * 10);
+        }
     }
 
-    // Imprimir el array después de añadir 22
-    printArr(&arr);
+    // c) Mostrar la estructura de al1
+    printf("Estructura al1 después de añadir 0, 10, 20, ..., 90:\n");
+    printArr(&al1);
 
-    // Añadir el valor 44
-    if (addElement(&arr, 44) == 0) {
-        printf("Elemento añadido\n");
-    } else {
-        printf("Error al añadir elemento\n");
+    // d) Actualizar las posiciones impares con los valores 1, 3, 5, 7, 9
+    for (int i = 1; i < 10; i += 2) {
+        if (setElement(&al1, i, i) != 0) {
+            printf("Error al modificar la posición %d en al1\n", i);
+        }
     }
 
-    // Imprimir el array después de añadir 44
-    printArr(&arr);
+    // e) Mostrar de nuevo la estructura de al1
+    printf("Estructura al1 después de modificar las posiciones impares con 1, 3, 5, 7, 9:\n");
+    printArr(&al1);
 
-    // Modificar el valor en la posición 1 con setElement
-    if (setElement(&arr, 1, 99) == 0) {
-        printf("Elemento modificado en la posición 1\n");
-    } else {
-        printf("Error al modificar elemento en la posición 1\n");
+    // f) Añadir las posiciones pares de al1 a al2
+    for (int i = 0; i < 10; i += 2) {
+        if (addElement(&al2, getElement(&al1, i)) != 0) {
+            printf("Error al añadir el elemento de la posición %d de al1 a al2\n", i);
+        }
     }
 
-    // Imprimir el array después de modificar el valor en la posición 1
-    printArr(&arr);
+    // g) Actualizar las posiciones finales de al2 para que almacenen los valores de 0 a 4
+    for (int i = al2.arrSize; i < 10 && i - al2.arrSize < 5; i++) {
+        if (addElement(&al2, i - al2.arrSize) != 0) {
+            printf("Error al añadir el valor %d a al2\n", i - al2.arrSize);
+        }
+    }
 
-    // Resetear el array
-    resetArr(&arr);
-    printf("Array reseteado\n");
-    printArr(&arr); // Imprimir el array después del reset
+    // h) Mostrar la estructura de al2
+    printf("Estructura al2 después de añadir las posiciones pares de al1 y los valores 0 a 4:\n");
+    printArr(&al2);
 
     return 0;
 }
