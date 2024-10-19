@@ -1,3 +1,74 @@
+
+//1. Estructura arrayLength_t
+//Esta estructura sirve para encapsular un array de enteros con capacidad para almacenar hasta 10 valores, junto con dos campos adicionales:
+
+//arrInt[10]: El array que almacenará hasta 10 enteros. Si una posición no tiene un valor válido, se almacena -1.
+//arrSize: Indica cuántos elementos válidos (positivos o 0) se han añadido al array.
+//arrAdd: Mantiene la suma de todos los valores almacenados en el array.
+
+
+//2. Función initArray(arrayLength_t *arr)
+//Esta función inicializa el array y otros campos de la estructura. Su objetivo es asegurarse de que el array comience en un estado válido:
+
+//Establece todas las posiciones del array a -1 para indicar que están vacías.
+//Inicializa arrSize y arrAdd a 0, indicando que no hay elementos añadidos y la suma es 0.
+//Esta función es crucial porque asegura que el array siempre tenga valores controlados antes de su uso. Se utiliza en la inicialización de las variables al1 y al2.
+
+
+//3. Función addElement(arrayLength_t *arr, int valor)
+//Esta función añade un nuevo valor al array, siempre que:
+
+//El valor sea mayor o igual a 0.
+//Haya espacio disponible en el array (es decir, arrSize es menor que 10).
+//Si todo es válido, añade el nuevo valor en la primera posición vacía, actualiza el tamaño (arrSize) y la suma de los elementos (arrAdd).
+
+// importante porque permite que se agreguen nuevos valores al array y actualiza las estadísticas de la estructura (cantidad de elementos y suma). Esta función se usa en varias partes del programa, como al agregar valores en el paso b).
+
+//4. Función printArr(const arrayLength_t *arr)
+//Su función es mostrar el estado actual de la estructura en distintos momentos del programa.
+
+//5. Función getElement(const arrayLength_t *arr, int posicion)
+//Recibe una posición del array y devuelve el valor almacenado en esa posición, si es válido (es decir, si la posición está dentro del rango de 0 a 9 y contiene un valor distinto de -1). Si no, devuelve -1.
+
+//Se usa para obtener valores específicos del array, como en el paso f), donde se añaden las posiciones pares del array al1 al array al2.
+
+//6. Función setElement(arrayLength_t *arr, int posicion, int nuevoValor)
+//Modifica un valor ya existente en una posición específica del array, siempre que:
+
+//La posición sea válida (0 a 9).
+//La posición ya contenga un valor válido.
+//El nuevo valor a insertar sea mayor o igual a 0.
+//Si se cumplen las condiciones, la función actualiza el valor en esa posición y modifica la suma arrAdd correctamente, restando el valor anterior y sumando el nuevo.
+
+//Esta función es importante para modificar los elementos del array. Por ejemplo, en el paso d) se actualizan las posiciones impares del array al1:
+
+//7. Función main()
+//La función main() es el programa principal que coordina todas las funciones anteriores para realizar varias operaciones sobre las estructuras al1 y al2.
+
+//a) Declarar dos estructuras de tipo arrayLength_t
+//al1 y al2 son dos instancias de la estructura. Se inicializan usando la función initArray.
+//b) Añadir valores al array al1
+  //      Se utiliza la función addElement para almacenar los valores 0, 10, 20, ..., 90 en el array al1.
+
+//c) Mostrar la estructura de al1
+  //      Se llama a printArr para mostrar el contenido de al1 tras haber añadido los valores.
+
+//d) Actualizar las posiciones impares con valores 1, 3, 5, 7, 9
+//Usa setElement para modificar las posiciones impares del array al1.
+
+//e) Mostrar de nuevo la estructura de al1
+  //      Se imprime la estructura modificada para verificar los cambios.
+
+//f) Añadir las posiciones pares de al1 a al2
+//Utiliza getElement y addElement para copiar los valores en las posiciones pares del array al1 a al2.
+
+//g) Añadir los valores 0, 1, 2, 3, 4 a las posiciones finales de al2
+//Se usa addElement para completar el array al2 con los valores 0 a 4 en sus posiciones restantes.
+
+//h) Mostrar la estructura de al2
+  //      Finalmente, se muestra el contenido de al2.
+
+
 #include<stdio.h>
 
 typedef struct {
